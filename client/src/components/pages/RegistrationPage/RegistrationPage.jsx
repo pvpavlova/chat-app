@@ -1,28 +1,10 @@
-import "./RegistrationPage.css";
+import AuthForm from '../../organisms/AuthForm/AuthForm';
+import styles from './RegistrationPage.module.css';
 
-export default function Register() {
+export default function RegistrationPage({ setUser }) {
   return (
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">Lamasocial</h3>
-          <span className="loginDesc">
-            Connect with friends and the world around you on Lamasocial.
-          </span>
-        </div>
-        <div className="loginRight">
-          <div className="loginBox">
-            <input placeholder="Username" className="loginInput" />
-            <input placeholder="Email" className="loginInput" />
-            <input placeholder="Password" className="loginInput" />
-            <input placeholder="Password Again" className="loginInput" />
-            <button className="loginButton">Sign Up</button>
-            <button className="loginRegisterButton">
-              Log into Account
-            </button>
-          </div>
-        </div>
-      </div>
+    <div className={styles.wrapper}>
+      <AuthForm title='Зарегистрироваться' type='signup' setUser={setUser} />
     </div>
   );
 }

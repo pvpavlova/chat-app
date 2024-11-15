@@ -1,0 +1,16 @@
+.feed {
+  width: 60%;
+  margin-left: 30px;
+}
+
+.feed-wrapper {
+  padding: 20px;
+}
+
+.noPostsMessage {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+  font-size: 18px;
+  font-style: italic;
+}

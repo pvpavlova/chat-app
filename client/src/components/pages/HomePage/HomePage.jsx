@@ -1,10 +1,16 @@
-import NavBar from "../../organisms/NavBar/NavBar";
-import Sidebar from "../../organisms/SideBar/SideBar";
 
-export default function HomePage() {
+import Feed from "../../organisms/Feed/Feed";
+import"./HomePage.css"
+
+import SideBar from '../../organisms/SideBar/SideBar';
+
+export default function HomePage({user}) {
   return (
     <>
-    <NavBar></NavBar>
-    <Sidebar></Sidebar>
+    <div className="home-container">
+          <SideBar></SideBar>
+          <Feed  user={user} ></Feed>
+    </div>
+
   </>)
 }

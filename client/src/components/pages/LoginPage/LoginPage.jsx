@@ -1,27 +1,10 @@
-import "./LoginPage.css";
+import AuthForm from '../../organisms/AuthForm/AuthForm';
+import styles from './LoginPage.module.css';
 
-export default function Login() {
+export default function LoginPage({ setUser }) {
   return (
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">Lamasocial</h3>
-          <span className="loginDesc">
-            Connect with friends and the world around you on Lamasocial.
-          </span>
-        </div>
-        <div className="loginRight">
-          <div className="loginBox">
-            <input placeholder="Email" className="loginInput" />
-            <input placeholder="Password" className="loginInput" />
-            <button className="loginButton">Log In</button>
-            <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
-              Create a New Account
-            </button>
-          </div>
-        </div>
-      </div>
+    <div className={styles.wrapper}>
+      <AuthForm title='Войти' type='signin' setUser={setUser} />
     </div>
   );
 }

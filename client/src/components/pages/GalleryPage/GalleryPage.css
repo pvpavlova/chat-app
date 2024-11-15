@@ -1,0 +1,43 @@
+.gallery-page {
+  display: flex;
+  height: calc(100vh-60px);
+}
+
+.gallery-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.photo-item {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.photo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.no-photos-message {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+  margin-left: 20px;
+  color: #888;
+}

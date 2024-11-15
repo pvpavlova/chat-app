@@ -4,29 +4,41 @@ import {
   Chat,
   PlayCircleFilledOutlined,
   Group,
+  VerifiedUser,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         <ul className="sidebarList">
-          <li className="sidebarListItem">
+          <Link
+            to="/profile"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <li className="sidebarListItem">
+              <VerifiedUser className="sidebarIcon" />
+              <span>Профиль</span>
+            </li>
+          </Link>
+            <Link to="/main" style={{ textDecoration: "none", color: "inherit" }}><li className="sidebarListItem">
             <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">Лента</span>
-          </li>
-          <li className="sidebarListItem">
-            <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">Сообщения</span>
-          </li>
-          <li className="sidebarListItem">
-            <PlayCircleFilledOutlined className="sidebarIcon" />
-            <span className="sidebarListItemText">Фотографии</span>
-          </li>
-          <li className="sidebarListItem">
-            <Group className="sidebarIcon" />
-            <span className="sidebarListItemText">Группы</span>
-          </li>
+            <span>Лента</span>
+          </li></Link>
+          
+          <Link to="/chat" style={{ textDecoration: "none", color: "inherit" }}>
+            <li className="sidebarListItem">
+              <Chat className="sidebarIcon" />
+              <span>Сообщения</span>
+            </li>
+          </Link>
+          <Link to="/gallery" style={{ textDecoration: "none", color: "inherit" }}>
+            <li className="sidebarListItem">
+              <PlayCircleFilledOutlined className="sidebarIcon" />
+              <span>Фотографии</span>
+            </li>
+          </Link>
         </ul>
       </div>
     </div>

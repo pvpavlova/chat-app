@@ -8,7 +8,7 @@ router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!(username && email && password)) {
-    res.status(400).json({ message: "Необходимо заполнить все поля" });
+    return res.status(400).json({ message: "Необходимо заполнить все поля" });
   }
 
   try {
@@ -18,20 +18,20 @@ router.post("/signup", async (req, res) => {
     });
 
     if (!isCreated) {
-      res.status(400).json("Такой пользователь существует");
-    } else {
-      const plainUser = user.get();
-      delete plainUser.password;
-
-      const { accessToken, refreshToken } = generateToken({ user: plainUser });
-
-      res
-        .cookie("refreshToken", refreshToken, cookieConfig.refresh)
-        .json({ user: plainUser, accessToken });
+      return res.status(400).json({ message: "Такой пользователь существует" });
     }
+
+    const plainUser = user.get();
+    delete plainUser.password;
+
+    const { accessToken, refreshToken } = generateToken({ user: plainUser });
+
+    return res
+      .cookie("refreshToken", refreshToken, cookieConfig.refresh)
+      .json({ user: plainUser, accessToken });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: "" });
+    return res.status(400).json({ message: "Ошибка сервера" });
   }
 });
 
@@ -39,32 +39,32 @@ router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
   if (!(email && password)) {
-    res.status(400).json({ message: "Необходимо заполнить все поля" });
+    return res.status(400).json({ message: "Необходимо заполнить все поля" });
   }
 
   try {
     const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(400).json({ message: "Некорректный email или пароль" });
+    }
 
     const isCorrectPassword = await bcrypt.compare(password, user.password);
-
     if (!isCorrectPassword) {
-      res.status(400).json({ message: "Некорректный email или пароль" });
-    } else {
-      const plainUser = user.get();
-      delete plainUser.password;
-
-      const { accessToken, refreshToken } = generateToken({ user: plainUser });
-
-      res
-        .cookie("refreshToken", refreshToken, cookieConfig.refresh)
-        .json({ user: plainUser, accessToken });
+      return res.status(400).json({ message: "Некорректный email или пароль" });
     }
+
+    const plainUser = user.get();
+    delete plainUser.password;
+
+    const { accessToken, refreshToken } = generateToken({ user: plainUser });
+
+    return res
+      .cookie("refreshToken", refreshToken, cookieConfig.refresh)
+      .json({ user: plainUser, accessToken });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: "" });
+    return res.status(400).json({ message: "Ошибка сервера" });
   }
-
-  res.end();
 });
 
 router.get("/logout", async (req, res) => {
